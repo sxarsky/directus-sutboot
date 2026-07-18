@@ -1,0 +1,24 @@
+# Skyramp Workspace Configuration
+workspace:
+  repoName: sxarsky/directus-sutboot
+  repoUrl: https://github.com/sxarsky/directus-sutboot
+metadata:
+  schemaVersion: v1
+  executorVersion: v1.3.34
+  createdAt: "2026-07-18T22:45:36.600Z"
+  updatedAt: "2026-07-18T22:45:36.607Z"
+services:
+  - serviceName: directus
+    language: typescript
+    framework: playwright
+    testDirectory: tests/skyramp
+    api:
+      schemaPath: http://localhost:8055/server/specs/oas
+      authType: bearer
+      authHeader: Authorization
+      authScheme: Bearer
+      baseUrl: http://localhost:8055
+    runtimeDetails:
+      serverStartCommand: docker compose -f .skyramp/sut/docker-compose.testbot.yml --project-directory . up -d --build directus
+      runtime: docker
+      dockerNetwork: directus-sutboot_default
